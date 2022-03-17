@@ -1,0 +1,67 @@
+.profileContent {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: flex-end;
+
+  gap: 1.5rem;
+
+  .navigationButtons {
+    ul {
+      list-style: none;
+
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+
+      gap: 1.125rem;
+
+      li {
+        font-size: 1.25rem;
+        color: var(--gray-500);
+
+        cursor: pointer;
+
+        transition: color 0.3s;
+
+        &:hover {
+          color: var(--pink-700);
+        }
+      }
+    }
+  }
+
+  .userInfo {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: 0.5rem;
+
+    text-align: right;
+
+    span {
+      h2 {
+        font-size: 0.875rem;
+      }
+      p,
+      a {
+        color: var(--gray-500);
+        font-size: 0.75rem;
+
+        transition: color 0.3s;
+
+        a:hover {
+          color: var(--pink-700);
+        }
+      }
+    }
+
+    img {
+      width: 48px;
+      height: auto;
+
+      clip-path: circle();
+    }
+  }
+}

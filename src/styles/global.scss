@@ -1,0 +1,99 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --blue-900: #1a1d23;
+  --blue-850: #23272f;
+
+  --pink-500: #ff57b2;
+  --pink-700: #d34591;
+
+  --white: #ffffff;
+  --white-300: #f8f8f8;
+
+  --gray-200: #d7d7d7;
+  --gray-500: #bbbbbb;
+}
+
+html {
+  @media (max-width: 1080px) {
+    font-size: 93.75%;
+  }
+
+  @media (max-width: 720px) {
+    font-size: 87.5%;
+  }
+}
+
+body {
+  background: var(--blue-900);
+  color: var(--gray-200);
+  -webkit-font-smoothing: antialiased;
+
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    width: 0.5rem;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: var(--blue-850);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--pink-500);
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: var(--pink-700);
+  }
+}
+
+body,
+input,
+textarea,
+button {
+  font-family: "Inter", sans-serif;
+  font-size: 1.125rem;
+  font-weight: 400;
+  color: var(--gray-200);
+}
+
+p,
+ul,
+strong {
+  font-family: "Inter", sans-serif;
+  font-size: 1.125rem;
+  font-weight: 400;
+}
+
+strong {
+  font-weight: 600;
+}
+
+a {
+  color: var(--pink-500);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.125rem;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Inter", sans-serif;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--white-300);
+}
+
+button {
+  cursor: pointer;
+}
