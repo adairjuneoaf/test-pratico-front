@@ -1,3 +1,17 @@
 {
-  "cSpell.words": ["Configurações", "Controle", "Efetuar", "Loggout", "Notificações", "usuários", "webfonts"]
+  "cSpell.words": [
+    "Configurações",
+    "Controle",
+    "detalhes",
+    "Efetuar",
+    "Loggout",
+    "mais",
+    "Notificações",
+    "obter",
+    "Ocupação",
+    "Usuário",
+    "usuários",
+    "webfonts"
+  ],
+  "cSpell.ignoreWords": ["tableUsersStyles"]
 }

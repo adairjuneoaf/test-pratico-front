@@ -1,0 +1,105 @@
+.titleTable {
+  margin-bottom: 1.5rem;
+}
+
+.tableContent {
+  width: 100%;
+  height: auto;
+
+  background: var(--blue-850);
+  border-radius: 12px;
+
+  padding: 2rem 1rem;
+
+  font-size: 1rem;
+
+  th,
+  td {
+    padding: 1rem 2rem;
+  }
+
+  thead {
+    text-align: left;
+    color: var(--white);
+    tr {
+      th {
+        width: auto;
+        height: 3.5rem;
+
+        vertical-align: middle;
+
+        line-height: 0.875rem;
+        span {
+          font-size: 80%;
+          font-weight: 400;
+          color: var(--gray-500);
+        }
+      }
+    }
+  }
+
+  tbody {
+    text-align: left;
+    tr {
+      td {
+        width: auto;
+        height: 3.5rem;
+
+        vertical-align: middle;
+        line-height: 0.875rem;
+
+        .buttonDetailsUser {
+          background: transparent;
+          border-radius: 0;
+          border: 0;
+
+          font-weight: 600;
+
+          transition: color 0.3s;
+
+          &:hover {
+            color: var(--pink-700);
+          }
+        }
+        span {
+          font-size: 80%;
+          font-weight: 400;
+          color: var(--gray-500);
+        }
+
+        &:last-child {
+          width: fit-content;
+          text-align: right;
+        }
+      }
+
+      .nameUser {
+        width: 25%;
+      }
+
+      .emailUser {
+        width: 35%;
+      }
+
+      .buttonAction {
+        width: 100%;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+
+        margin: 0 0 0 auto;
+      }
+    }
+  }
+}
+
+.legendsAboutTable {
+  p {
+    margin-top: 0.875rem;
+    font-size: 0.875rem;
+
+    color: var(--gray-500);
+  }
+}
