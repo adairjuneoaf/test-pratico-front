@@ -17,15 +17,43 @@
       gap: 1.125rem;
 
       li {
-        font-size: 1.25rem;
-        color: var(--gray-500);
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
-        cursor: pointer;
+        .iconButtonNavigation {
+          position: relative;
 
-        transition: color 0.3s;
+          display: flex;
+          align-items: center;
+          justify-content: center;
 
-        &:hover {
-          color: var(--pink-700);
+          font-size: 1.25rem;
+          color: var(--gray-500);
+
+          cursor: pointer;
+
+          transition: color 0.3s;
+
+          &:hover {
+            color: var(--pink-700);
+          }
+        }
+
+        .isNotification {
+          &::after {
+            position: absolute;
+            top: 0;
+            right: 0;
+
+            content: "";
+            width: 8px;
+            height: 8px;
+
+            border-radius: 4px;
+
+            background: var(--pink-700);
+          }
         }
       }
     }

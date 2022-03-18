@@ -13,7 +13,13 @@ const Header: React.FC = () => {
     <div className={headerStyles.headerContent}>
       <Logo />
       <section className={headerStyles.sectionProfile}>
-        <Profile name="Adair Juneo" occupation="Desenvolvedor" avatar="https://avatars.githubusercontent.com/u/88504998?v=4" email="adair_juneo@hotmail.com" />
+        <Profile
+          name="Adair Juneo"
+          occupation="Desenvolvedor"
+          avatar="https://avatars.githubusercontent.com/u/88504998?v=4"
+          email="adair_juneo@hotmail.com"
+          isNotification={true}
+        />
       </section>
     </div>
   );

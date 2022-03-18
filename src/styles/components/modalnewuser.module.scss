@@ -1,0 +1,70 @@
+.titleModal {
+  font-size: 2rem;
+  text-align: left;
+
+  margin-bottom: 18px;
+}
+.formContent {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  justify-content: space-between;
+
+  //gap: 1rem;
+
+  //padding: 1rem;
+
+  label {
+    width: fit-content;
+    height: fit-content;
+
+    font-size: 1.125rem;
+    font-weight: 700;
+
+    margin-bottom: 0.5rem;
+  }
+
+  input {
+    width: 100%;
+    height: 3rem;
+
+    border-radius: 8px;
+    border: 0;
+
+    background: var(--blue-850);
+
+    padding: 0.5rem 1rem;
+
+    font-size: 1rem;
+    font-weight: 600;
+
+    margin-bottom: 1rem;
+
+    outline: 2px solid transparent;
+
+    &:focus {
+      outline: 2px solid var(--pink-700);
+      transition: outline 0.5s;
+    }
+  }
+
+  .buttonsActionForm {
+    width: 100%;
+    height: auto;
+
+    gap: 1rem;
+
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+
+    button {
+      width: 100%;
+      margin: 0;
+    }
+  }
+}

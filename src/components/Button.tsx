@@ -9,7 +9,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   name: string;
   icon?: ReactNode;
   children?: ReactNode;
-  typeAction: "edit" | "remove" | "default";
+  typeAction: "edit" | "remove" | "save" | "default";
 }
 
 const Button: React.FC<ButtonProps> = ({ typeAction = "default", name = "Botão", icon, ...props }) => {
@@ -17,7 +17,12 @@ const Button: React.FC<ButtonProps> = ({ typeAction = "default", name = "Botão"
     <button
       {...props}
       type="button"
-      className={`${buttonStyles.buttonContent} ${typeAction === "edit" && buttonStyles.buttonAdd} ${typeAction === "remove" && buttonStyles.buttonRemove}`}
+      className={`
+      ${buttonStyles.buttonContent}
+      ${typeAction === "edit" && buttonStyles.buttonAdd}
+      ${typeAction === "remove" && buttonStyles.buttonRemove}
+      ${typeAction === "save" && buttonStyles.buttonSave}
+      `}
     >
       <p className={buttonStyles.iconButton}>{icon}</p>
       {icon ? <span>&nbsp;&nbsp;</span> : ""}

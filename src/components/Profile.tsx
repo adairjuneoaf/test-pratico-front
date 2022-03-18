@@ -13,15 +13,18 @@ interface ProfileUserProps {
   email: string;
   avatar: string;
   occupation: string;
+  isNotification: boolean;
 }
 
-const Profile: React.FC<ProfileUserProps> = ({ name = "Nome", avatar = "", email = "default@default.com", occupation = "Default" }) => {
+const Profile: React.FC<ProfileUserProps> = ({ name = "Nome", avatar = "", email = "default@default.com", occupation = "Default", isNotification = false }) => {
   return (
     <div className={profileStyles.profileContent}>
       <nav className={profileStyles.navigationButtons}>
         <ul>
           <li>
-            <FiBell href="/" title="Notificações" />
+            <a href="/" className={`${profileStyles.iconButtonNavigation} ${isNotification && profileStyles.isNotification}`}>
+              <FiBell href="/" title="Notificações" />
+            </a>
           </li>
           {/* <li>
             <a href="/" title="Configurações">
@@ -29,7 +32,9 @@ const Profile: React.FC<ProfileUserProps> = ({ name = "Nome", avatar = "", email
             </a>
           </li> */}
           <li>
-            <FiLogOut href="/" title="Efetuar Loggout" />
+            <a href="/" className={profileStyles.iconButtonNavigation}>
+              <FiLogOut href="/" title="Loggout" />
+            </a>
           </li>
         </ul>
       </nav>
