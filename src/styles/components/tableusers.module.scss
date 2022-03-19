@@ -59,6 +59,7 @@
           border: 0;
 
           font-weight: 600;
+          text-transform: capitalize;
 
           transition: color 0.3s;
 
@@ -80,6 +81,7 @@
 
       .nameUser {
         width: 25%;
+        text-transform: capitalize;
       }
 
       .emailUser {

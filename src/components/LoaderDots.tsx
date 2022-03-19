@@ -11,12 +11,13 @@ import loaderDotsStyles from "../styles/components/loaderdots.module.scss";
 type LoaderDotsProps = {
   width: number;
   height: number;
+  color?: string;
 };
 
-const LoaderDots: React.FC<LoaderDotsProps> = ({ width, height }) => {
+const LoaderDots: React.FC<LoaderDotsProps> = ({ width, height, color = "#d34591" }) => {
   return (
     <div className={loaderDotsStyles.loaderStyle}>
-      <ThreeDots color="#d34591" width={width} height={height} />
+      <ThreeDots color={color} width={width} height={height} />
     </div>
   );
 };

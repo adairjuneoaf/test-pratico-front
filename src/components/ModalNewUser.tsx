@@ -1,5 +1,9 @@
 // Main Dependecies
 import React, { FormEvent, useContext, useState } from "react";
+import { useMutation, useQueryClient } from "react-query";
+
+// Services Dependencies
+import { insertUniqueUser } from "../services/api";
 
 // Styled Dependencies
 import Modal from "react-modal";
@@ -16,52 +20,71 @@ import { ModalActions } from "../contexts/contextModalActions";
 import "../styles/global.scss";
 import modalNewUserStyles from "../styles/components/modalnewuser.module.scss";
 
+// interface DataNewUserType {
+//   name?: string;
+//   fone?: string;
+//   email?: string;
+//   website?: string;
+//   occupation?: string;
+// }
+
 interface DataNewUserType {
-  name?: string;
-  fone?: string;
-  email?: string;
-  website?: string;
-  occupation?: string;
+  name: string;
+  email: string;
+  phone: string;
+  website: string;
+  company: {
+    bs?: string;
+  };
 }
 
 Modal.setAppElement("#root");
 
 const ModalNewUser: React.FC = () => {
-  const [dataUser, setDataUser] = useState<DataNewUserType>({ name: "", fone: "", email: "", website: "", occupation: "" });
+  const [dataUser, setDataUser] = useState<DataNewUserType>({ name: "", phone: "", email: "", website: "", company: { bs: "" } });
 
   const { handleOpenNewUserModal, closeNewUserModal } = useContext(ModalActions);
 
-  function handleSubmitNewUser(event: FormEvent) {
+  const queryClient = useQueryClient();
+  const { mutateAsync, isLoading } = useMutation(insertUniqueUser, {
+    onSuccess: () => {
+      queryClient.invalidateQueries("users");
+
+      closeNewUserModal();
+      setDataUser({ name: "", email: "", phone: "", website: "", company: { bs: "" } });
+    },
+    onError: () => {
+      toast.error("Houve algum erro ao tentar criar esse usuário!");
+    },
+  });
+
+  async function handleSubmitNewUser(event: FormEvent) {
     event.preventDefault();
 
+    // Validation data for submit form
     if (dataUser.name?.trim() === "") {
       return toast.error("Houve algum erro com o Nome, verifique por favor.");
     }
-    if (dataUser.occupation?.trim() === "") {
-      return toast.error("Houve algum erro com o Cargo, verifique por favor.");
-    }
+
     if (dataUser.email?.trim() === "") {
       return toast.error("Houve algum erro com o E-mail, verifique por favor.");
     }
-    if (dataUser.fone?.trim() === "") {
+
+    if (dataUser.phone?.trim() === "") {
       return toast.error("Houve algum erro com o Telefone, verifique por favor.");
     }
+
     if (dataUser.website?.trim() === "") {
       return toast.error("Houve algum erro com o Website, verifique por favor.");
     }
 
-    setDataUser({ ...dataUser });
-
-    console.log(dataUser);
-
-    closeNewUserModal();
-    setDataUser({ name: "", email: "", fone: "", occupation: "", website: "" });
+    await mutateAsync({ ...dataUser });
   }
 
   function handleResetFormNewUser(event: FormEvent) {
     event.preventDefault();
 
-    setDataUser({ name: "", email: "", fone: "", occupation: "", website: "" });
+    setDataUser({ name: "", email: "", phone: "", website: "", company: { bs: "" } });
 
     closeNewUserModal();
   }
@@ -92,9 +115,9 @@ const ModalNewUser: React.FC = () => {
           type="text"
           id="occupation"
           placeholder="Cargo ou ocupação"
-          value={dataUser?.occupation}
+          value={dataUser?.company.bs}
           onChange={({ target }) => {
-            setDataUser((data) => ({ ...data, occupation: target.value }));
+            setDataUser((data) => ({ ...data, company: { bs: target.value } }));
           }}
         />
         <label htmlFor="email">E-mail</label>
@@ -113,9 +136,9 @@ const ModalNewUser: React.FC = () => {
           type="number"
           id="fone"
           placeholder="99 9 9999 9999"
-          value={dataUser?.fone}
+          value={dataUser?.phone}
           onChange={({ target }) => {
-            setDataUser((data) => ({ ...data, fone: target.value }));
+            setDataUser((data) => ({ ...data, phone: target.value }));
           }}
           required
         />
@@ -133,7 +156,7 @@ const ModalNewUser: React.FC = () => {
 
         <section className={modalNewUserStyles.buttonsActionForm}>
           <Button type="reset" onClick={handleResetFormNewUser} name="CANCELAR" typeAction="default" icon={<FiXCircle />} />
-          <Button type="submit" onClick={handleSubmitNewUser} name="SALVAR" typeAction="save" icon={<FiSave />} />
+          <Button type="submit" onClick={handleSubmitNewUser} name="SALVAR" typeAction="save" icon={<FiSave />} isLoading={isLoading} />
         </section>
       </form>
     </Modal>

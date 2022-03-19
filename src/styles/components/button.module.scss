@@ -28,6 +28,10 @@
     background: var(--gray-500);
   }
 
+  &:disabled {
+    cursor: not-allowed;
+  }
+
   p.iconButton {
     font-size: 1.5rem;
     color: var(--blue-900);

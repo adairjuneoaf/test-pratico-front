@@ -7,6 +7,7 @@ import { getAllUsers } from "./services/api";
 
 // Styled Dependencies
 import { FiUserPlus } from "react-icons/fi";
+import LoaderDots from "./components/LoaderDots";
 
 // Components
 import Button from "./components/Button";
@@ -18,7 +19,6 @@ import { ModalActions } from "./contexts/contextModalActions";
 // Styles
 import commonStyles from "./styles/common.module.scss";
 import tableUsersStyles from "./styles/components/tableusers.module.scss";
-import LoaderDots from "./components/LoaderDots";
 
 // Typings[TypeScript]
 type DataFetchedAPI = {

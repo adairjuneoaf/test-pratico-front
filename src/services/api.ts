@@ -1,10 +1,10 @@
-// Main Dependencies
+// Styled Dependencies
+import { toast } from "react-hot-toast";
 
 // Services Dependencies
 import { api } from "./axios";
 
 // Typings[TypeScript]
-
 type DataFetchedAPI = {
   id: number;
   name: string;
@@ -13,6 +13,16 @@ type DataFetchedAPI = {
   website: string;
   company: {
     bs: string;
+  };
+};
+
+type DataInsertUserAPI = {
+  name: string;
+  email: string;
+  phone: string;
+  website: string;
+  company: {
+    bs?: string;
   };
 };
 
@@ -42,4 +52,30 @@ export const getUniqueUser = async (id: number) => {
     .finally(() => {});
 
   return data;
+};
+
+export const insertUniqueUser = async ({ ...data }: DataInsertUserAPI) => {
+  await api
+    .post("/users", {
+      ...data,
+    })
+    .then(() => {
+      return toast.success("Usuário cadastrado com sucesso!");
+    })
+    .catch(() => {
+      return new Error("insert data unique user in API");
+    })
+    .finally(() => {});
+};
+
+export const deleteUniqueUser = async (id: number) => {
+  await api
+    .delete(`/users/${id}`)
+    .then(() => {
+      return toast.success("Usuário removido com sucesso!");
+    })
+    .catch(() => {
+      return new Error("delete data unique user in API");
+    })
+    .finally(() => {});
 };

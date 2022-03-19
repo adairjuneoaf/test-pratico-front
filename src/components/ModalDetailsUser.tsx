@@ -15,18 +15,6 @@ import { getUniqueUser } from "../services/api";
 import toast from "react-hot-toast";
 import LoaderDots from "./LoaderDots";
 
-// Typings[TypeScript]
-// interface ModalDetailsUserProps {
-//   id: number;
-//   name: string;
-//   email: string;
-//   phone: string;
-//   website: string;
-//   company: {
-//     bs: string;
-//   };
-// }
-
 Modal.setAppElement("#root");
 
 const ModalDetailsUser: React.FC = () => {
@@ -42,8 +30,8 @@ const ModalDetailsUser: React.FC = () => {
 
   const { data, isLoading, isError } = useQuery(["users", idSelectedOpenModalDetailsUser], () => getUniqueUser(idSelectedOpenModalDetailsUser), {
     enabled: enabledQuery,
-    staleTime: 1000 * 30, // 30 Seconds
-    refetchInterval: 1000 * 30, // 30 Seconds
+    staleTime: 1000 * 60 * 3, // 3 Minutes
+    refetchInterval: 1000 * 60 * 1, // 1 Minute
     refetchOnWindowFocus: false,
   });
 
@@ -73,7 +61,13 @@ const ModalDetailsUser: React.FC = () => {
             <img src="/assets/svg/pic_profile_default.svg" alt="user_picture" />
             <div>
               <input type="text" id="name" className={modalDetailsUserStyles.importantInfo} value={data?.name} readOnly />
-              <input type="text" id="occupation" className={modalDetailsUserStyles.ordinaryInfo} value={data?.company?.bs} readOnly />
+              <input
+                type="text"
+                id="occupation"
+                className={modalDetailsUserStyles.ordinaryInfo}
+                value={data?.company?.bs.trim() === "" ? "Cargo Indefinido" : data?.company?.bs}
+                readOnly
+              />
             </div>
           </section>
           <section className={modalDetailsUserStyles.sectionMediumFormDetails}>

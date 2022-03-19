@@ -1,6 +1,9 @@
 // Dependencies
 import React, { ButtonHTMLAttributes, ReactNode } from "react";
 
+// Styles Dependencies
+import LoaderDots from "./LoaderDots";
+
 // Styles
 import buttonStyles from "../styles/components/button.module.scss";
 
@@ -9,10 +12,11 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   name?: string;
   icon?: ReactNode;
   children?: ReactNode;
+  isLoading?: boolean;
   typeAction: "edit" | "remove" | "save" | "default";
 }
 
-const Button: React.FC<ButtonProps> = ({ typeAction = "default", name, icon, ...props }) => {
+const Button: React.FC<ButtonProps> = ({ typeAction = "default", name, icon, isLoading, ...props }) => {
   return (
     <button
       {...props}
@@ -23,10 +27,17 @@ const Button: React.FC<ButtonProps> = ({ typeAction = "default", name, icon, ...
       ${typeAction === "remove" && buttonStyles.buttonRemove}
       ${typeAction === "save" && buttonStyles.buttonSave}
       `}
+      disabled={isLoading && true}
     >
-      <p className={buttonStyles.iconButton}>{icon}</p>
-      {icon && name ? <span>&nbsp;&nbsp;</span> : ""}
-      {name}
+      {isLoading ? (
+        <LoaderDots height={24} width={24} color={"#ffffff"} />
+      ) : (
+        <>
+          <p className={buttonStyles.iconButton}>{icon}</p>
+          {icon && name ? <span>&nbsp;&nbsp;</span> : ""}
+          {name}{" "}
+        </>
+      )}
     </button>
   );
 };

@@ -1,5 +1,9 @@
 // Main Dependencies
 import React, { memo, useContext } from "react";
+import { useMutation, useQueryClient } from "react-query";
+
+// Services Dependencies
+import { deleteUniqueUser } from "../services/api";
 
 // Styled Dependencies
 import { FiEdit, FiX } from "react-icons/fi";
@@ -12,6 +16,7 @@ import Button from "./Button";
 
 // Styles
 import tableUsersStyles from "../styles/components/tableusers.module.scss";
+import toast from "react-hot-toast";
 
 // Typings[TypeScript]
 interface ListTableUsersProps {
@@ -26,6 +31,24 @@ interface ListTableUsersProps {
 const ListTableUsers: React.FC<ListTableUsersProps> = ({ id, name, email, company }) => {
   const { openDetailsUserModal } = useContext(ModalActions);
 
+  const queryClient = useQueryClient();
+  const { mutateAsync, isLoading } = useMutation(deleteUniqueUser, {
+    onSuccess: () => {
+      queryClient.invalidateQueries("users");
+    },
+    onError: () => {
+      toast.error("Houve algum erro ao tentar excluir esse usuário!");
+    },
+  });
+
+  async function handleDeleteUser(id: number) {
+    await mutateAsync(id);
+  }
+
+  async function handleEditUser() {
+    return toast("Função ainda em desenvolvimento...", { icon: "👀" });
+  }
+
   return (
     <React.Fragment>
       <tr>
@@ -36,17 +59,26 @@ const ListTableUsers: React.FC<ListTableUsersProps> = ({ id, name, email, compan
               openDetailsUserModal(id);
             }}
             className={tableUsersStyles.buttonDetailsUser}
-            title="Exibir detalhes de ''"
+            title={`Exibir detalhes de ${name}`}
           >
-            {name}
+            {name.toLowerCase()}
           </button>
           <br />
-          <span>{company.bs}</span>
+          <span>{company.bs.trim() === "" ? "Cargo Indefinido" : company.bs}</span>
         </td>
         <td className={tableUsersStyles.emailUser}>{email}</td>
         <td className={tableUsersStyles.buttonAction}>
-          <Button type="button" icon={<FiEdit />} typeAction="edit" title="Editar usuário" />
-          <Button type="button" icon={<FiX />} typeAction="remove" title="Excluir usuário" />
+          <Button type="button" onClick={handleEditUser} icon={<FiEdit />} typeAction="edit" title="Editar usuário" />
+          <Button
+            type="button"
+            onClick={() => {
+              handleDeleteUser(id);
+            }}
+            icon={<FiX />}
+            isLoading={isLoading}
+            typeAction="remove"
+            title="Excluir usuário"
+          />
         </td>
       </tr>
     </React.Fragment>
