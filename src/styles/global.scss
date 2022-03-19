@@ -5,6 +5,8 @@
 }
 
 :root {
+  --hover: rgba(0, 0, 0, 0.3);
+
   --blue-900: #1a1d23;
   --blue-850: #23272f;
 
@@ -53,11 +55,11 @@ body {
   }
 
   &::-webkit-scrollbar-thumb {
-    background: var(--pink-500);
+    background: var(--gray-500);
   }
 
   &::-webkit-scrollbar-thumb:hover {
-    background: var(--pink-700);
+    background: var(--gray-200);
   }
 }
 
@@ -119,9 +121,19 @@ button {
   align-items: center;
   justify-content: center;
 }
-.reactModal {
+.reactModalNewUser {
   width: 100%;
   max-width: 432px;
+  background: var(--blue-900);
+  color: var(--white);
+  padding: 32px;
+  position: relative;
+  border-radius: 16px;
+}
+
+.reactModalDetailsUser {
+  width: 100%;
+  max-width: 30rem;
   background: var(--blue-900);
   color: var(--white);
   padding: 32px;

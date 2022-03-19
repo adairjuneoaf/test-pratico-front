@@ -1,64 +1,53 @@
 // Main Dependencies
 import React, { useContext } from "react";
+import { useQuery } from "react-query";
+
+// Services Dependencies
+import { getAllUsers } from "./services/api";
 
 // Styled Dependencies
 import { FiUserPlus } from "react-icons/fi";
 
 // Components
+import Button from "./components/Button";
 import ListTableUsers from "./components/ListTableUsers";
 
 // Context Functions
 import { ModalActions } from "./contexts/contextModalActions";
 
 // Styles
-import Button from "./components/Button";
-import ModalNewUser from "./components/ModalNewUser";
 import commonStyles from "./styles/common.module.scss";
 import tableUsersStyles from "./styles/components/tableusers.module.scss";
+import LoaderDots from "./components/LoaderDots";
 
 // Typings[TypeScript]
-interface ListTableUsersProps {
-  id: string;
+type DataFetchedAPI = {
+  id: number;
   name: string;
   email: string;
-  occupation: string;
-}
-
-const data = [
-  {
-    id: "001",
-    name: "Adair Juneo",
-    email: "adair_juneo@hotmail.com",
-    occupation: "Desenvolvedor WEB",
-  },
-  {
-    id: "002",
-    name: "João da Silva",
-    email: "joao_silva@hotmail.com",
-    occupation: "Diretor Executivo",
-  },
-  {
-    id: "003",
-    name: "Mayara Müller",
-    email: "mayara_muller@hotmail.com",
-    occupation: "Diretor de Finanças",
-  },
-];
+  phone: string;
+  website: string;
+  company: {
+    bs: string;
+  };
+};
 
 const App: React.FC = () => {
   const { openNewUserModal } = useContext(ModalActions);
 
-  function openModal() {
-    openNewUserModal();
-  }
+  const { data, status, isLoading, isSuccess, isError } = useQuery("users", getAllUsers, {
+    cacheTime: 1000 * 60 * 1, // 1 Minute
+    staleTime: 1000 * 30, // 30 Seconds
+    refetchInterval: 1000 * 30, // 30 Seconds
+    refetchOnWindowFocus: true,
+  });
 
   return (
-    <>
-      <ModalNewUser />
+    <React.Fragment>
       <main className={commonStyles.mainContainer}>
         <section className={tableUsersStyles.titleTable}>
           <h1>Controle de usuários</h1>
-          <Button type="button" onClick={openModal} name="Novo usuário" typeAction="save" icon={<FiUserPlus />} />
+          <Button type="button" onClick={openNewUserModal} name="Novo usuário" typeAction="save" icon={<FiUserPlus />} />
         </section>
         <table className={tableUsersStyles.tableContent}>
           <thead>
@@ -73,16 +62,28 @@ const App: React.FC = () => {
             </tr>
           </thead>
           <tbody>
-            {data.map((user: ListTableUsersProps) => (
-              <ListTableUsers key={user.id} {...user} />
-            ))}
+            {isLoading ? (
+              <tr>
+                <td colSpan={3}>
+                  <LoaderDots width={64} height={128} />
+                </td>
+              </tr>
+            ) : (
+              isSuccess && data.map((user: DataFetchedAPI) => <ListTableUsers key={user.id} {...user} />)
+            )}
+
+            {isError && (
+              <tr>
+                <td colSpan={3}>{status}</td>
+              </tr>
+            )}
           </tbody>
         </table>
         <div className={tableUsersStyles.legendsAboutTable}>
           <p>* Clique no usuário para obter mais detalhes.</p>
         </div>
       </main>
-    </>
+    </React.Fragment>
   );
 };
 

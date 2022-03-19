@@ -2,6 +2,8 @@
 import React, { FormEvent, useContext, useState } from "react";
 
 // Styled Dependencies
+import Modal from "react-modal";
+import toast from "react-hot-toast";
 import { FiSave, FiXCircle } from "react-icons/fi";
 
 // Components
@@ -10,13 +12,9 @@ import Button from "./Button";
 // Context Functions
 import { ModalActions } from "../contexts/contextModalActions";
 
-// Styled Dependecies
-import Modal from "react-modal";
-
 // Styles
 import "../styles/global.scss";
 import modalNewUserStyles from "../styles/components/modalnewuser.module.scss";
-import toast from "react-hot-toast";
 
 interface DataNewUserType {
   name?: string;
@@ -69,14 +67,20 @@ const ModalNewUser: React.FC = () => {
   }
 
   return (
-    <Modal isOpen={handleOpenNewUserModal} onRequestClose={closeNewUserModal} closeTimeoutMS={300} overlayClassName="overlayReactModal" className="reactModal">
+    <Modal
+      isOpen={handleOpenNewUserModal}
+      onRequestClose={closeNewUserModal}
+      closeTimeoutMS={300}
+      overlayClassName="overlayReactModal"
+      className="reactModalNewUser"
+    >
       <h2 className={modalNewUserStyles.titleModal}>Novo usuário</h2>
       <form className={modalNewUserStyles.formContent}>
         <label htmlFor="name">Nome</label>
         <input
           type="text"
           id="name"
-          placeholder="Meu nome"
+          placeholder="Fulano Beltrano"
           value={dataUser?.name}
           onChange={({ target }) => {
             setDataUser((data) => ({ ...data, name: target.value }));
@@ -87,7 +91,7 @@ const ModalNewUser: React.FC = () => {
         <input
           type="text"
           id="occupation"
-          placeholder="Meu cargo"
+          placeholder="Cargo ou ocupação"
           value={dataUser?.occupation}
           onChange={({ target }) => {
             setDataUser((data) => ({ ...data, occupation: target.value }));
@@ -97,7 +101,7 @@ const ModalNewUser: React.FC = () => {
         <input
           type="email"
           id="email"
-          placeholder="meuemail@host.com.br"
+          placeholder="email@host.com.br"
           value={dataUser?.email}
           onChange={({ target }) => {
             setDataUser((data) => ({ ...data, email: target.value }));
@@ -119,7 +123,7 @@ const ModalNewUser: React.FC = () => {
         <input
           type="url"
           id="website"
-          placeholder="meuwebsite.com.br"
+          placeholder="usuariowebsite.com.br"
           value={dataUser?.website}
           onChange={({ target }) => {
             setDataUser((data) => ({ ...data, website: target.value }));

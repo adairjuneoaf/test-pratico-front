@@ -1,6 +1,7 @@
 // Main Dependencies
 import React, { createContext, ReactNode, useState } from "react";
 
+// Typing[TypeScript]
 interface ModalActionsProviderProps {
   children: ReactNode;
 }
@@ -9,16 +10,18 @@ interface ModalActionsProps {
   openNewUserModal: () => void;
   closeNewUserModal: () => void;
   handleOpenNewUserModal: boolean;
-  openDetailsUserModal: () => void;
   closeDetailsUserModal: () => void;
   handleOpenDetailsUserModal: boolean;
+  idSelectedOpenModalDetailsUser: number;
+  openDetailsUserModal: (id: number) => void;
 }
 
 export const ModalActions = createContext({} as ModalActionsProps);
 
 const ModalActionsProvider: React.FC<ModalActionsProviderProps> = ({ children }) => {
-  const [handleOpenNewUserModal, setHandleOpenNewUserModal] = useState(false);
-  const [handleOpenDetailsUserModal, setHandleOpenDetailsUserModal] = useState(false);
+  const [handleOpenNewUserModal, setHandleOpenNewUserModal] = useState<boolean>(false);
+  const [handleOpenDetailsUserModal, setHandleOpenDetailsUserModal] = useState<boolean>(false);
+  const [idSelectedOpenModalDetailsUser, setIdSelectedOpenModalDetailsUser] = useState<number>(0);
 
   function openNewUserModal() {
     setHandleOpenNewUserModal(true);
@@ -28,8 +31,9 @@ const ModalActionsProvider: React.FC<ModalActionsProviderProps> = ({ children })
     setHandleOpenNewUserModal(false);
   }
 
-  function openDetailsUserModal() {
+  function openDetailsUserModal(id: number) {
     setHandleOpenDetailsUserModal(true);
+    setIdSelectedOpenModalDetailsUser(id);
   }
 
   function closeDetailsUserModal() {
@@ -38,7 +42,15 @@ const ModalActionsProvider: React.FC<ModalActionsProviderProps> = ({ children })
 
   return (
     <ModalActions.Provider
-      value={{ handleOpenNewUserModal, handleOpenDetailsUserModal, openNewUserModal, closeNewUserModal, openDetailsUserModal, closeDetailsUserModal }}
+      value={{
+        openNewUserModal,
+        closeNewUserModal,
+        openDetailsUserModal,
+        closeDetailsUserModal,
+        handleOpenNewUserModal,
+        handleOpenDetailsUserModal,
+        idSelectedOpenModalDetailsUser,
+      }}
     >
       {children}
     </ModalActions.Provider>

@@ -1,8 +1,11 @@
 // Main Dependencies
-import React, { memo } from "react";
+import React, { memo, useContext } from "react";
 
 // Styled Dependencies
 import { FiEdit, FiX } from "react-icons/fi";
+
+// Contexts Functions
+import { ModalActions } from "../contexts/contextModalActions";
 
 // Components
 import Button from "./Button";
@@ -12,28 +15,41 @@ import tableUsersStyles from "../styles/components/tableusers.module.scss";
 
 // Typings[TypeScript]
 interface ListTableUsersProps {
-  id: string;
+  id: number;
   name: string;
   email: string;
-  occupation: string;
+  company: {
+    bs: string;
+  };
 }
 
-const ListTableUsers: React.FC<ListTableUsersProps> = ({ id, name, email, occupation }) => {
+const ListTableUsers: React.FC<ListTableUsersProps> = ({ id, name, email, company }) => {
+  const { openDetailsUserModal } = useContext(ModalActions);
+
   return (
-    <tr>
-      <td className={tableUsersStyles.nameUser}>
-        <button type="button" className={tableUsersStyles.buttonDetailsUser} title="Exibir detalhes de ''">
-          {name}
-        </button>
-        <br />
-        <span>{occupation}</span>
-      </td>
-      <td className={tableUsersStyles.emailUser}>{email}</td>
-      <td className={tableUsersStyles.buttonAction}>
-        <Button name="Editar" icon={<FiEdit />} typeAction="edit" title="Editar usuário" />
-        <Button name="Excluir" icon={<FiX />} typeAction="remove" title="Excluir usuário" />
-      </td>
-    </tr>
+    <React.Fragment>
+      <tr>
+        <td className={tableUsersStyles.nameUser}>
+          <button
+            type="button"
+            onClick={() => {
+              openDetailsUserModal(id);
+            }}
+            className={tableUsersStyles.buttonDetailsUser}
+            title="Exibir detalhes de ''"
+          >
+            {name}
+          </button>
+          <br />
+          <span>{company.bs}</span>
+        </td>
+        <td className={tableUsersStyles.emailUser}>{email}</td>
+        <td className={tableUsersStyles.buttonAction}>
+          <Button type="button" icon={<FiEdit />} typeAction="edit" title="Editar usuário" />
+          <Button type="button" icon={<FiX />} typeAction="remove" title="Excluir usuário" />
+        </td>
+      </tr>
+    </React.Fragment>
   );
 };
 

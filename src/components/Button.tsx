@@ -6,13 +6,13 @@ import buttonStyles from "../styles/components/button.module.scss";
 
 // Typings[TypeScript]
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  name: string;
+  name?: string;
   icon?: ReactNode;
   children?: ReactNode;
   typeAction: "edit" | "remove" | "save" | "default";
 }
 
-const Button: React.FC<ButtonProps> = ({ typeAction = "default", name = "Botão", icon, ...props }) => {
+const Button: React.FC<ButtonProps> = ({ typeAction = "default", name, icon, ...props }) => {
   return (
     <button
       {...props}
@@ -25,7 +25,7 @@ const Button: React.FC<ButtonProps> = ({ typeAction = "default", name = "Botão"
       `}
     >
       <p className={buttonStyles.iconButton}>{icon}</p>
-      {icon ? <span>&nbsp;&nbsp;</span> : ""}
+      {icon && name ? <span>&nbsp;&nbsp;</span> : ""}
       {name}
     </button>
   );
