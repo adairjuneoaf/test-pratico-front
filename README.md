@@ -1,13 +1,12 @@
 # Teste Prático - Linear Sistemas
 
 <h1 align="center">
-    <img alt="VideoExampleProject" src="" width="1920px" height="auto" />
-    [![IMAGE ALT TEXT HERE](https://i.imgur.com/xaSLFQ0.png)](https://drive.google.com/file/d/1hUcqGT4UdEJoPngmGjoZGiZixH8tsDwJ/view?usp=sharing)
+    <img alt="VideoExampleProject" src=".github/img_video.png" href="https://drive.google.com/file/d/1hUcqGT4UdEJoPngmGjoZGiZixH8tsDwJ/view?usp=sharing" width="1920px" height="auto" />
 </h1>
 
 ## 💻 Projeto
 
-Você pode acessar o projeto em produção clicando neste link [Acessar Projeto](https://test-front-end-react-adairjuneo.vercel.app/)
+Vídeo demontração de funcionalidades e app completo clicando aqui [Acessar vídeo](https://drive.google.com/file/d/1hUcqGT4UdEJoPngmGjoZGiZixH8tsDwJ/view?usp=sharing)
 
 Conforme proposto no desafio e as instruções passadas, a obrigação era o desenvolvimento de um App simples para "controle de usuário" com as funcionalidades de **Inserção**, **Remoção** e **Detalhamento** de usuários. O layout(conforme instruído) deveria ser desenvolvido por mim sem qualquer design systems para seguir e utilizando a tecnologia **[React](https://reactjs.org/docs/getting-started.html)**. Para hidratação dos dados no App deixaram a disposição uma API com todas as Requisições(GET, POST e DELETE) disponíveis e para consumir essa API o meu dever era utilizar a biblioteca **[AXIOS](https://axios-http.com/docs/intro)**. Por fim deixaram de forma opcional o uso de **[REDUX](https://redux.js.org/)** na aplicação.
 
@@ -60,3 +59,5 @@ $ yarn server
 ** Lembrando que para segurança do projeto, ao dispoinibilizar em produção, foi criada uma váriavel global no arquivo `.env.local`, que deve ser criado por você quando clonar o projeto. Dentro desse arquivo, é necessário criar uma váriavel chamada `REACT_APP_API_BASE_URL` e informar a URL da API. Caso esteja utilizando o **JSON Server\*\*, basta informar a essa variável o seguinte endereço: `http://localhost:3001`.
 
 O app estará disponível no seu navegador de internet pelo endereço http://localhost:3000.
+
+Você pode acessar o projeto em produção clicando neste link [Acessar projeto](https://test-front-end-react-adairjuneo.vercel.app/). Como a API disponibilizada persiste os dados, no ambiente de produção não é possível visualizar o app em funcionamento completo, portanto clone o projeto e faça os testes na sua máquina local.
