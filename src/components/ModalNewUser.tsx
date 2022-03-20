@@ -1,5 +1,5 @@
 // Main Dependecies
-import React, { FormEvent, useContext, useState } from "react";
+import React, { FormEvent, memo, useContext, useState } from "react";
 import { useMutation, useQueryClient } from "react-query";
 
 // Services Dependencies
@@ -163,4 +163,4 @@ const ModalNewUser: React.FC = () => {
   );
 };
 
-export default ModalNewUser;
+export default memo(ModalNewUser);

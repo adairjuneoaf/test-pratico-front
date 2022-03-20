@@ -40,7 +40,10 @@ const App: React.FC = () => {
     staleTime: 1000 * 30, // 30 Seconds
     refetchInterval: 1000 * 30, // 30 Seconds
     refetchOnWindowFocus: true,
+    retry: false,
   });
+
+  console.log(status);
 
   return (
     <React.Fragment>
@@ -74,7 +77,17 @@ const App: React.FC = () => {
 
             {isError && (
               <tr>
-                <td colSpan={3}>{status}</td>
+                <td colSpan={3} style={{ textAlign: "left", fontStyle: "italic" }}>
+                  Erro fetch data all users in API.
+                </td>
+              </tr>
+            )}
+
+            {!data?.length && (
+              <tr>
+                <td colSpan={3} style={{ textAlign: "left", fontStyle: "italic" }}>
+                  There is no registered data in API.
+                </td>
               </tr>
             )}
           </tbody>

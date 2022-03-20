@@ -1,5 +1,5 @@
 // Main Dependencies
-import React, { useContext, useEffect, useState } from "react";
+import React, { memo, useContext, useEffect, useState } from "react";
 
 // Contexts Functions
 import { ModalActions } from "../contexts/contextModalActions";
@@ -36,7 +36,7 @@ const ModalDetailsUser: React.FC = () => {
   });
 
   if (isError) {
-    toast.error("Erro na busca dos dados desse usuário!");
+    toast.error("Erro na busca dos dados do usuário!");
   }
 
   return (
@@ -60,7 +60,7 @@ const ModalDetailsUser: React.FC = () => {
           <section className={modalDetailsUserStyles.sectionTopFormDetails}>
             <img src="/assets/svg/pic_profile_default.svg" alt="user_picture" />
             <div>
-              <input type="text" id="name" className={modalDetailsUserStyles.importantInfo} value={data?.name} readOnly />
+              <input type="text" id="name" className={modalDetailsUserStyles.importantInfo} value={data?.name.toLocaleLowerCase()} readOnly />
               <input
                 type="text"
                 id="occupation"
@@ -92,4 +92,4 @@ const ModalDetailsUser: React.FC = () => {
   );
 };
 
-export default ModalDetailsUser;
+export default memo(ModalDetailsUser);

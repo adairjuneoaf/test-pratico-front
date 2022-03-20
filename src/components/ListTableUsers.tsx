@@ -33,6 +33,7 @@ const ListTableUsers: React.FC<ListTableUsersProps> = ({ id, name, email, compan
 
   const queryClient = useQueryClient();
   const { mutateAsync, isLoading } = useMutation(deleteUniqueUser, {
+    retry: false,
     onSuccess: () => {
       queryClient.invalidateQueries("users");
     },
