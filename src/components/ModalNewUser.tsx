@@ -20,14 +20,7 @@ import { ModalActions } from "../contexts/contextModalActions";
 import "../styles/global.scss";
 import modalNewUserStyles from "../styles/components/modalnewuser.module.scss";
 
-// interface DataNewUserType {
-//   name?: string;
-//   fone?: string;
-//   email?: string;
-//   website?: string;
-//   occupation?: string;
-// }
-
+// Typings[TypeScript]
 interface DataNewUserType {
   name: string;
   email: string;
@@ -97,9 +90,17 @@ const ModalNewUser: React.FC = () => {
       overlayClassName="overlayReactModal"
       className="reactModalNewUser"
     >
-      <h2 className={modalNewUserStyles.titleModal}>Novo usuário</h2>
+      <section className={modalNewUserStyles.sectionTitleModal}>
+        <h2>Novo usuário</h2>
+        <p>
+          <span className="highlightInfo">*</span> Campos obrigatórios
+        </p>
+      </section>
+
       <form className={modalNewUserStyles.formContent}>
-        <label htmlFor="name">Nome</label>
+        <label htmlFor="name" className={modalNewUserStyles.inputRequired}>
+          Nome
+        </label>
         <input
           type="text"
           id="name"
@@ -120,7 +121,9 @@ const ModalNewUser: React.FC = () => {
             setDataUser((data) => ({ ...data, company: { bs: target.value } }));
           }}
         />
-        <label htmlFor="email">E-mail</label>
+        <label htmlFor="email" className={modalNewUserStyles.inputRequired}>
+          E-mail
+        </label>
         <input
           type="email"
           id="email"
@@ -131,7 +134,9 @@ const ModalNewUser: React.FC = () => {
           }}
           required
         />
-        <label htmlFor="fone">Telefone </label>
+        <label htmlFor="fone" className={modalNewUserStyles.inputRequired}>
+          Telefone{" "}
+        </label>
         <input
           type="number"
           id="fone"
@@ -142,7 +147,9 @@ const ModalNewUser: React.FC = () => {
           }}
           required
         />
-        <label htmlFor="website">Website </label>
+        <label htmlFor="website" className={modalNewUserStyles.inputRequired}>
+          Website{" "}
+        </label>
         <input
           type="url"
           id="website"

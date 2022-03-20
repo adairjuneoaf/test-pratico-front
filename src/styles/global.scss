@@ -108,6 +108,11 @@ button {
   cursor: pointer;
 }
 
+span.highlightInfo {
+  color: var(--pink-700);
+  font-weight: 600;
+}
+
 .overlayReactModal {
   background: rgba(0, 0, 0, 0.6);
 
@@ -164,6 +169,6 @@ button {
   font-weight: 700;
   font-family: "Inter", sans-serif;
 
-  background: var(--blue-850);
+  background-color: var(--blue-850);
   color: var(--white);
 }

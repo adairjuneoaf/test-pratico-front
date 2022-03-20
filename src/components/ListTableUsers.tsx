@@ -47,7 +47,7 @@ const ListTableUsers: React.FC<ListTableUsersProps> = ({ id, name, email, compan
   }
 
   async function handleEditUser() {
-    return toast("Função ainda em desenvolvimento...", { icon: "👀" });
+    return toast("Em desenvolvimento...", { icon: "👀" });
   }
 
   return (

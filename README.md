@@ -1,70 +1,62 @@
-# Teste Prático Linear Sistemas
+# Teste Prático - Linear Sistemas
 
-O objetivo desta atividade é avaliar conhecimentos básicos do Javascript. Abaixo algumas instruções:
+<h1 align="center">
+    <img alt="VideoExampleProject" src="" width="1920px" height="auto" />
+    [![IMAGE ALT TEXT HERE](https://i.imgur.com/xaSLFQ0.png)](https://drive.google.com/file/d/1hUcqGT4UdEJoPngmGjoZGiZixH8tsDwJ/view?usp=sharing)
+</h1>
 
-## Tecnologias a serem utilizadas:
+## 💻 Projeto
 
-1 - ReactJS
+Você pode acessar o projeto em produção clicando neste link [Acessar Projeto](https://test-front-end-react-adairjuneo.vercel.app/)
 
-2 - axios (https://github.com/axios/axios)
+Conforme proposto no desafio e as instruções passadas, a obrigação era o desenvolvimento de um App simples para "controle de usuário" com as funcionalidades de **Inserção**, **Remoção** e **Detalhamento** de usuários. O layout(conforme instruído) deveria ser desenvolvido por mim sem qualquer design systems para seguir e utilizando a tecnologia **[React](https://reactjs.org/docs/getting-started.html)**. Para hidratação dos dados no App deixaram a disposição uma API com todas as Requisições(GET, POST e DELETE) disponíveis e para consumir essa API o meu dever era utilizar a biblioteca **[AXIOS](https://axios-http.com/docs/intro)**. Por fim deixaram de forma opcional o uso de **[REDUX](https://redux.js.org/)** na aplicação.
 
-3 - EcmaScript6 ( ES6 )
+## ⚛️ Como foi o desenvolvimento
 
-4 - redux (https://redux.js.org/) - Opcional
+O layout do app foi algo bem tranquilo, resolvi desenvolver algo "mais completo" e que realmente faça referência ao objetivo proposto. Como estamos utilizando **React**, resolvi criar vários componentes estilizando com uso do SASS cada um deles individulamente, o que faz jus ao uso do **React**, o resultado final do layout e do App completo estão disponíveis ao clicar na imagem bem acima. Sobre a hidratação dos dados no App, resolvi utilizar uma biblioteca que cada dia mais cresce no ambiente de desenvolvimento React, a **React Query**. O por quê do uso de **React Query** no app é justificavél por conta da flexibilidade que essa biblioteza entrega quando assunto é "boa experiência do usuário", por quê é necessário que tenhamos respostas rápidas as ações e atualizações em tempo real dos dados que estão sendo geridos, o **React Query** faz isso e faz **muito bem**. Outro ponto muito positivo de utilizar o **React Query** é a facilidade de escalabilidade para implementação de novas funções nesse cenário de controle de usuários. Poderiamos utilizar sim **REDUX** como foi proposto, com um estado global e várias ACTIONS para inserção, remoção e detalhamento. Outra descisão que tomei foi quanto a "tela/componente" de consulta e inserção de novos usuários, optei por ao invés de criar uma rota para cada situação e redirecionar o usuário, visando também uma boa experiência e usabilidade, resolvi criar "modais", onde na mesma tela em que o usuário está, ele ao executar essas ações um componente menor do que a tela abre sobrepondo a tela principal e para gerir esses componentes utilizei a **CONTEXT API** do próprio **React**. Por fim, o resultado final do desafio ficou bem legal, serviu muito como ainda mais aprendizado para domínio do React e suas bibliotecas. Outro ponto muito importante, além do uso de boas práticas do **JavaScript**, utilizei o **TypeScript**, que hoje em dia ajuda **MUITO** o desenvolvedor, ainda mais no ambiente de desenvolvimento **React**.
 
-5 - SASS - (Opcional)
+## 🧪 Tecnologias
 
-## Objetivo
+Esse projeto foi desenvolvido com as seguintes tecnologias:
 
-Criação de componentes para listagem e manutenções de usuários através de API RestFul
+- [React](https://reactjs.org/docs/getting-started.html)
 
-## Sobre a API
+## 📚 Bibliotecas
 
-Para a implementação deste teste, deverá ser usada a API de "users" que é fornecida pelo serviço https://jsonplaceholder.typicode.com. Esta API é publica e usada apenas para testes.
+Para auxiliar no desenvolvimento do projeto, utilizei as seguinte bibliotecas:
 
+- [SASS](https://sass-lang.com/)
+- [AXIOS](https://axios-http.com/docs/intro)
+- [TypeScript](https://www.typescriptlang.org/docs/)
+- [**React Query**](https://react-query.tanstack.com/overview)
+- [React Modal](https://reactcommunity.org/react-modal/)
+- [ReactHotToast](https://react-hot-toast.com/docs)
 
-## Regras de implementação COMPONENTE 1 (Listagem)
+## 🚀 Como executar
 
-![alt text](https://github.com/Deivisson/test-pratico-front/blob/master/assets/images/componente1.png)
+Clone o projeto e acesse a pasta, a seguir temos os passos:
 
-1 - Ao montar o componente, deverá fazer requisição à API de /users para recuperar a listagem de registros. 
+```bash
+$ git clone https://github.com/adairjuneoaf/test-pratico-front
+$ cd test-pratico-front
+```
 
-2 - Após recuperado os usuários, mostrar os registros em tabela HTML conforme imagem
+Para iniciá-lo, siga os passos abaixo:
 
-3 - Para cada registro deverá conter um botão excluir. Quando excluído, o item deverá ser removido da lista que esta na tela. (Deverá fazer requisição http à API e somente depois do retorno com sucesso, remover da lista)
+```bash
+# Instalar as dependências
+$ yarn
+# Iniciar o projeto
+$ yarn dev
+```
 
-4 - Ao clicar sobre um usuário na tabela, deverá mostrar mais informações sobre o mesmo na área de detalhe.
+Para realizar alguns testes no projeto, resolvi criar um servidor local utilizando **[JSON Server](https://www.npmjs.com/package/json-server)**, portanto, caso tenha interesse, basta executar o comandos abaixo.
 
-5 - Ao clicar no botão "Adicionar" novo, deverá exibir o COMPONENTE 2
+```bash
+# Iniciar o servidor
+$ yarn server
+```
 
+** Lembrando que para segurança do projeto, ao dispoinibilizar em produção, foi criada uma váriavel global no arquivo `.env.local`, que deve ser criado por você quando clonar o projeto. Dentro desse arquivo, é necessário criar uma váriavel chamada `REACT_APP_API_BASE_URL` e informar a URL da API. Caso esteja utilizando o **JSON Server\*\*, basta informar a essa variável o seguinte endereço: `http://localhost:3001`.
 
-## Regras de implementação COMPONENTE 2 (Form)
-
-![alt text](https://github.com/Deivisson/test-pratico-front/blob/master/assets/images/componente2.png)
-
-1 - Implementar componente para inclusão de novos usuários conforme a imagem 2;
-
-2 - Deverá conter os campos "Nome", "Email", "Telefone" e "Site". Todos campos são obrigatórios
-
-3 - Ao gravar, deverá ocultar o componente form e adicionar o registro na tabela de listagem. (Obs.: Deverá chamar à API de cadastro de usuários)
-
-4 - Se clicado no botão cancelar, o Form deverá ser fechado.
-
-## REGRAS
-
-1 - A implementação deverá ser entregue via compartilhamento de repositório no gitHub.
-
-2 - Como estamos usando uma API de teste, operações de Criação e Exclusão dos registros, são fakes. Ou seja, o servidor irá retornar sucesso, porém os dados não serão persistidos. Para a nossa avaliação o que é importante é ver as operações sendo executadas e o reflexo disto nos componentes/interface.
-
-3 - Todas as operação (Listar, Excluir, Salvar) devem passar pela chamada da API.
-
-4 - É importante que as telas estejam bem estilizadas (Css). Queremos avaliar a escrita e o seu carinho :-).
-
-5 - Dê preferência pelo uso das novas features do ES6 sempre que possível.
-
-
-Bom Trabalho !!! :-)
-
-
-
-
+O app estará disponível no seu navegador de internet pelo endereço http://localhost:3000.

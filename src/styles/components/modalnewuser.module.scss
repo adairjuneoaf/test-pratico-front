@@ -1,6 +1,14 @@
-.titleModal {
-  font-size: 2rem;
-  text-align: left;
+.sectionTitleModal {
+  h2 {
+    font-size: 2rem;
+    text-align: left;
+  }
+  p {
+    font-size: 0.875rem;
+    span {
+      font-size: 1rem;
+    }
+  }
 
   margin-bottom: 18px;
 }
@@ -25,6 +33,21 @@
     font-weight: 700;
 
     margin-bottom: 0.5rem;
+
+    position: relative;
+
+    &.inputRequired {
+      &::after {
+        content: "*";
+
+        position: absolute;
+
+        margin-left: 2px;
+        font-size: 1rem;
+
+        color: var(--pink-700);
+      }
+    }
   }
 
   input {
