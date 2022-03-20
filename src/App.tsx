@@ -35,15 +35,13 @@ type DataFetchedAPI = {
 const App: React.FC = () => {
   const { openNewUserModal } = useContext(ModalActions);
 
-  const { data, status, isLoading, isSuccess, isError } = useQuery("users", getAllUsers, {
+  const { data, isLoading, isSuccess, isError } = useQuery("users", getAllUsers, {
     cacheTime: 1000 * 60 * 1, // 1 Minute
     staleTime: 1000 * 30, // 30 Seconds
     refetchInterval: 1000 * 30, // 30 Seconds
     refetchOnWindowFocus: true,
     retry: false,
   });
-
-  console.log(status);
 
   return (
     <React.Fragment>
